@@ -1,0 +1,55 @@
+@media screen and (max-width: 520px) {
+    .container {
+        width: 292px;
+    }
+    .game-container {
+        margin-top: 18px;
+        width: 292px;
+        height: 292px;
+    }
+    .grid-cell,
+    .touchpad-cell {
+        width: 40px;
+        height: 40px;
+    }
+    .tile .tile-inner,
+    .tile {
+        width: 40px;
+        height: 40px;
+    }
+    .game-info {
+        width: 292px;
+        height: 82px;
+        margin-top: 10px;
+    }
+    .next-title {
+        height:18px;
+    }
+    .game-next {
+        width: 96px;
+        height: 82px;
+    }
+    .next-cell {
+        width: 30px;
+        height: 30px;
+    }
+    .game-state {
+        height: 30px;
+    }
+    .game-state-inner {
+        width: 292px;
+        height: 30px;
+    }
+    .current-score {
+        height: 32px;
+        width: 180px;
+    }
+    .best-score {
+        height: 16px;
+        width: 180px;
+    }
+    .restart-button {
+        height: 34px;
+        width: 180px;
+    }
+}

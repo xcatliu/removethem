@@ -1,0 +1,182 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(232, 232, 232);
+}
+
+.container {
+    width: 502px;
+    margin: 0 auto;
+}
+
+.game-container {
+    margin-top: 30px;
+    position: relative;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -ms-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none;
+    width: 502px;
+    height: 502px;
+    border-radius: 4px;
+    background: rgb(241, 241, 241);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    position: absolute;
+    z-index: 1;
+}
+
+.touchpad-container {
+    position: absolute;
+    z-index: 2;
+}
+
+.grid-row,
+.touchpad-row {
+    margin-bottom: 2px;
+}
+
+.grid-row:last-child,
+.touchpad-row:last-child {
+    margin-bottom: 0;
+}
+
+.grid-row:after,
+.touchpad-row:after,
+.game-next:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.grid-cell,
+.touchpad-cell {
+    width: 70px;
+    height: 70px;
+    margin-right: 2px;
+    border-radius: 4px;
+    float: left;
+}
+
+.grid-cell,
+.next-cell {
+    background: rgb(224, 224, 224);
+}
+
+.grid-disable {
+    background: #AAA;
+}
+
+.grid-cell:last-child,
+.touchpad-cell:last-child {
+    margin-right: 0;
+}
+
+.tile-container {
+    position: absolute;
+    z-index: 2;
+}
+
+.tile .tile-inner,
+.tile {
+    width: 70px;
+    height: 70px;
+    border-radius: 4px;
+}
+
+.tile {
+    position: absolute;
+}
+
+.tile-red .tile-inner,
+.next-red {
+    background: rgb(254, 69, 67);
+}
+
+.tile-blue .tile-inner,
+.next-blue {
+    background: rgb(51, 181, 230);
+}
+
+.tile-purple .tile-inner,
+.next-purple {
+    background: rgb(170, 102, 205);
+}
+
+.tile-yellow .tile-inner,
+.next-yellow {
+    background: rgb(255, 187, 52);
+}
+
+.tile-green .tile-inner,
+.next-green {
+    background: rgb(151, 204, 0);
+}
+
+.game-info {
+    position: relative;
+    width: 502px;
+    height: 154px;
+    margin-top: 20px;
+}
+
+.next-title {
+    height: 30px;
+    background: #CCC;
+    margin-right: 2px;
+}
+
+.game-next {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 186px;
+    height: 154px;
+}
+
+.next-cell {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 0 2px 2px 0;
+    border-radius: 4px;
+}
+
+.game-state {
+    height: 50px;
+    background: #AAA;
+}
+
+.game-state-inner {
+    width: 502px;
+    margin: 0 auto;
+    background: #333;
+    height: 50px;
+}
+
+.current-score {
+    height: 60px;
+    width: 300px;
+    background: #000;
+}
+
+.best-score {
+    height: 30px;
+    width: 300px;
+    background: #666;
+}
+
+.restart-button {
+    height: 64px;
+    width: 300px;
+    background: #CCC;
+}
