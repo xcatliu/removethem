@@ -335,10 +335,12 @@ GameManager.prototype.checkTiles = function (tiles) {
             removeTiles.push(line4Array);
         }
     }
+    var removeCount = 0;
     for (var i = 0; i < removeTiles.length; i++) {
         for (var j = 0; j < removeTiles[i].length; j++) {
             if (this.grid.cellOccupied(removeTiles[i][j])) {
                 this.grid.removeTile(removeTiles[i][j]);
+                removeCount++;
             }
         }
     }
@@ -346,6 +348,8 @@ GameManager.prototype.checkTiles = function (tiles) {
     if (!this.grid.cellsAvailable()) {
         this.over = true;
     }
+
+    this.score += ((removeCount + this.combo * 2) * (removeTiles.length));
 
     return removeTiles;
 };
@@ -409,9 +413,13 @@ GameManager.prototype.press = function (cell) {
                 this.remove = this.checkTiles([currentTile]);
 
                 if (this.remove.length == 0) {
+                    this.combo = 0;
                     this.add = this.addNextTiles();
                     this.remove = this.checkTiles(this.add);
                     this.next = this.randomNextTiles();
+                } else {
+                    this.combo++;
+                    this.line += this.remove.length;
                 }
                 this.actuate();
             } else {

@@ -5,7 +5,10 @@ function HTMLActuator() {
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
-    if (metadata.over) {}
+    console.info(metadata);
+    if (metadata.over) {
+        console.info("game over");
+    }
     var self = this;
     window.requestAnimationFrame(function () {
         if (metadata.init) {
