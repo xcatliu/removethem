@@ -46,8 +46,8 @@ GameManager.prototype.setup = function () {
         this.addStartTiles();
     }
     this.init = true;
-
     this.actuate();
+    this.init = false;
 };
 
 GameManager.prototype.randomNextTiles = function () {
@@ -61,12 +61,6 @@ GameManager.prototype.randomNextTiles = function () {
 
 GameManager.prototype.addStartTiles = function () {
     for (var i = 0; i < this.startTiles; i++) {
-        this.addRandomTile();
-    }
-};
-
-GameManager.prototype.addRandomTile = function () {
-    if (this.grid.cellsAvailable()) {
         var color = this.randomColor();
         var tile = new Tile(this.grid.randomAvailableCell(), color);
 
@@ -83,10 +77,11 @@ GameManager.prototype.actuate = function () {
         this.storageManager.setBestScore(this.score);
     }
 
-    if (this.over) {
-        this.storageManager.clearGameState();
-    } else {
-        this.storageManager.setGameState(this.serialize());
+    this.storageManager.setGameState(this.serialize());
+
+    if (this.line >= this.levelLine && this.level < 4) {
+        this.line = 0;
+        this.level++;
     }
 
     this.actuator.actuate(this.grid, {
@@ -104,7 +99,6 @@ GameManager.prototype.actuate = function () {
         remove: this.remove,
         bestScore: this.storageManager.getBestScore()
     });
-    this.init = false;
 };
 
 GameManager.prototype.serialize = function () {
@@ -179,9 +173,8 @@ GameManager.prototype.disabledMove = function (tile) {
 
 GameManager.prototype.checkTiles = function (tiles) {
     if (this.over) {
-        return;
+        return [];
     }
-
     var removeTiles = [];
     for (var i = 0; i < tiles.length; i++) {
         var currentColor = tiles[i].color;
@@ -349,7 +342,7 @@ GameManager.prototype.checkTiles = function (tiles) {
         this.over = true;
     }
 
-    this.score += ((removeCount + this.combo * 2) * (removeTiles.length));
+    this.score += ((removeCount + this.combo * 2 + this.level) * (removeTiles.length));
 
     return removeTiles;
 };
@@ -357,7 +350,7 @@ GameManager.prototype.checkTiles = function (tiles) {
 GameManager.prototype.addNextTiles = function () {
     if (this.grid.availableCells().length < this.next.length) {
         this.over = true;
-        return;
+        return [];
     }
     var nextTiles = [];
     if (this.grid.cellsAvailable()) {
@@ -375,15 +368,15 @@ GameManager.prototype.press = function (cell) {
         return;
     }
     if (this.grid.cellOccupied(cell)) {
+        this.move = null;
+        this.add = [];
+        this.remove = [];
         var currentTile = this.grid.cellContent(cell);
         if (this.active != null && this.active == currentTile) {
             this.active = null;
         } else {
             this.active = currentTile;
         }
-        this.move = null;
-        this.add = [];
-        this.remove = [];
         if (this.active) {
             this.active.updateDisable(this.disabledMove(currentTile));
         }
@@ -408,15 +401,17 @@ GameManager.prototype.press = function (cell) {
                     }
                 };
                 this.moveTile(currentTile, cell);
+                this.remove = this.checkTiles([currentTile]);
                 this.active = null;
 
-                this.remove = this.checkTiles([currentTile]);
-
                 if (this.remove.length == 0) {
-                    this.combo = 0;
                     this.add = this.addNextTiles();
                     this.remove = this.checkTiles(this.add);
                     this.next = this.randomNextTiles();
+                }
+
+                if (this.remove.length == 0) {
+                    this.combo = 0;
                 } else {
                     this.combo++;
                     this.line += this.remove.length;

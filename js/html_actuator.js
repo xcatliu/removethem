@@ -20,7 +20,6 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
                     }
                 });
             });
-            self.init = true;
         } else {
             self.clearActive();
             if (metadata.active) {
