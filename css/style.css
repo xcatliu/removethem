@@ -159,24 +159,26 @@ body {
 .game-state-inner {
     width: 502px;
     margin: 0 auto;
-    background: #333;
     height: 50px;
 }
 
 .current-score {
     height: 60px;
     width: 300px;
-    background: #000;
 }
 
 .best-score {
     height: 30px;
     width: 300px;
-    background: #666;
 }
 
 .restart-button {
     height: 64px;
     width: 300px;
-    background: #CCC;
+    border: 1px solid #CCC;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #F5F5F5;
+    cursor: pointer;
 }

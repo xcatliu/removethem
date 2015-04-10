@@ -14,6 +14,7 @@ function GameManager(size, EventManager, Actuator, StorageManager) {
     this.add = [];
     this.remove = [];
     this.eventManager.on('press', this.press.bind(this));
+    this.eventManager.on('restart', this.restart.bind(this));
 
     this.setup();
 }

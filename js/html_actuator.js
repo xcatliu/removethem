@@ -5,14 +5,51 @@ function HTMLActuator() {
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
-    console.info(metadata);
-    if (metadata.over) {
-        console.info("game over");
+    this.refreshGrid(grid, metadata);
+    this.updateData(metadata);
+};
+
+HTMLActuator.prototype.updateData = function (metadata) {
+    // combo
+    if (metadata.combo > 1) {
+        console.info('Great! Combo ' + metadata.combo + '!');
     }
+    // score
+    var scoreAdd = metadata.score - this.score;
+    if (scoreAdd != 0 && !metadata.init) {
+        console.info('You get ' + scoreAdd + '!');
+    }
+    document.querySelector('.current-score').innerHTML = 'SCORE:' + metadata.score + ' COMBO:' + metadata.combo;
+    this.score = metadata.score;
+    // bestScore
+    document.querySelector('.best-score').innerHTML = 'BEST SCORE:' + metadata.bestScore;
+    // next
+    var nextCells = document.querySelectorAll('.game-next .next-cell');
+    Array.prototype.forEach.call(nextCells, function (ele) {
+        ele.setAttribute('class', 'next-cell');
+    });
+    var colorIndex = 0;
+    metadata.next.forEach(function (color) {
+        nextCells[colorIndex].classList.add('next-' + color);
+        colorIndex++;
+    });
+    // level
+    // line
+    document.querySelector('.game-state-inner').innerHTML = 'LEVEL:' + metadata.level + ' LINE:' + metadata.line + '/' + metadata.levelLine;
+    if (metadata.level != 1 && metadata.line == 0) {
+        console.info('Congratulation！ Level up to lv' + metadata.level + '!');
+    }
+    // if over
+    if (metadata.over) {
+        console.info('Sorry！ Game over!');
+    }
+};
+
+HTMLActuator.prototype.refreshGrid = function (grid, metadata) {
     var self = this;
     window.requestAnimationFrame(function () {
         if (metadata.init) {
-            self.clearContainer(self.tileContainer);
+            self.clearContainer();
             grid.cells.forEach(function (column) {
                 column.forEach(function (cell) {
                     if (cell) {
@@ -48,9 +85,9 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     });
 };
 
-HTMLActuator.prototype.clearContainer = function (container) {
-    while (container.firstChild) {
-        container.removeChild(container.firstChild);
+HTMLActuator.prototype.clearContainer = function () {
+    while (this.tileContainer.firstChild) {
+        this.tileContainer.removeChild(this.tileContainer.firstChild);
     }
 };
 

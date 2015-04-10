@@ -26,6 +26,9 @@ EventManager.prototype.listen = function () {
     });
 
     this.bindPress('.touchpad-cell', this.touchpadPress);
+    this.bindPress('.restart-button', function () {
+        this.emit('restart', {});
+    });
 };
 
 EventManager.prototype.touchpadPress = function (event) {
