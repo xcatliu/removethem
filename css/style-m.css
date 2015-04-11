@@ -98,4 +98,12 @@
     .game-progress-inner {
         height: 26px;
     }
+    .game-message {
+        width: 292px;
+        height: 292px;
+    }
+    .game-message-text {
+        margin-top: 120px;
+        font-size: 34px;
+    }
 }

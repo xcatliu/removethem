@@ -283,3 +283,23 @@ body {
     transition: 0.5s;
     width: 0%;
 }
+
+.game-message {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    width: 502px;
+    height: 502px;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+}
+
+.game-message-text{
+    text-align: center;
+    margin-top: 200px;
+    font-size: 60px;
+    color: #EEE;
+    text-shadow: #000 0 0 4px;
+}

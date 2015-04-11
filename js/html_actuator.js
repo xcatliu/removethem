@@ -55,8 +55,14 @@ HTMLActuator.prototype.refreshGrid = function (grid, metadata) {
     // 处理逻辑和用户操作处理逻辑类似
     var self = this;
     window.requestAnimationFrame(function () {
+        if (metadata.over) {
+            document.querySelector('.game-message').style.display = 'block';
+        } else {
+            document.querySelector('.game-message').style.display = 'none';
+        }
         if (metadata.init) {
             self.clearContainer();
+            self.clearActive();
             grid.cells.forEach(function (column) {
                 column.forEach(function (cell) {
                     if (cell) {
