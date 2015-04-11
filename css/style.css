@@ -2,7 +2,10 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background: rgb(232, 232, 232);
+    background: #fdf9f0;
+    font-family: "Arial", "Microsoft YaHei";
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .container {
@@ -24,7 +27,6 @@ body {
     width: 502px;
     height: 502px;
     border-radius: 4px;
-    background: rgb(241, 241, 241);
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -69,11 +71,20 @@ body {
 
 .grid-cell,
 .next-cell {
-    background: rgb(224, 224, 224);
+    background: #ede3d0;
 }
 
 .grid-disable {
-    background: #AAA;
+    background: #8f8163;
+}
+
+.grid-disable::after {
+    content: "×";
+    font-size: 48px;
+    margin-left: 20px;
+    line-height: 75px;
+    color: #E2E2E2;
+    font-weight: normal;
 }
 
 .grid-cell:last-child,
@@ -126,13 +137,18 @@ body {
     position: relative;
     width: 502px;
     height: 154px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .next-title {
-    height: 30px;
-    background: #CCC;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background: #a76262;
     margin-right: 2px;
+    border-radius: 4px;
+    color: #FFF;
+    margin-bottom: 5px;
 }
 
 .game-next {
@@ -153,32 +169,117 @@ body {
 
 .game-state {
     height: 50px;
-    background: #AAA;
+    background: #d0c09b;
+    box-shadow: rgba(0, 0, 0, 0.7) 0 0 5px;
 }
 
 .game-state-inner {
     width: 502px;
     margin: 0 auto;
     height: 50px;
+    line-height: 50px;
+    position: relative;
+}
+
+.game-score {
+    position: relative;
+    width: 502px;
+    height: 154px;
 }
 
 .current-score {
-    height: 60px;
-    width: 300px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 150px;
+}
+
+.score-value {
+    font-size: 56px;
+    line-height: 70px;
+}
+
+.combo-value {
+    font-size: 28px;
+}
+
+.label-title {
+    font-size: 14px;
+    color: #a76262;
+}
+
+.combo-best {
+    position: absolute;
+    left: 150px;
+    top: 0;
 }
 
 .best-score {
-    height: 30px;
-    width: 300px;
+    position: absolute;
+    left: 0;
+    top: 56px;
+    width: 150px;
+    font-size: 16px;
 }
 
 .restart-button {
-    height: 64px;
-    width: 300px;
-    border: 1px solid #CCC;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    background: #F5F5F5;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #FFF;
+    background: #a76262;
+    border-radius: 5px;
+    font-size: 22px;
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.restart-button:hover {
+    background: #a04646;
+}
+
+.restart-button:active {
+    box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 5px inset;
+}
+
+.game-about {
+    color: #a76262;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.game-level {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #a76262;
+    text-shadow: #FFF 0 0 1px;
+    margin-left: 20px;
+    font-size: 18px;
+    z-index: 1;
+}
+
+.game-progress {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 40px;
+    width: 502px;
+    background: #fdf9f0;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 3px inset;
+}
+
+.game-progress-inner {
+    background: #ede3d0;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 3px inset;
+    height: 40px;
+    transition: 0.5s;
+    width: 0%;
 }

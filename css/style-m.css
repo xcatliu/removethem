@@ -1,9 +1,13 @@
 @media screen and (max-width: 520px) {
+    html,
+    body {
+        font-size: 12px;
+    }
     .container {
         width: 292px;
     }
     .game-container {
-        margin-top: 18px;
+        margin-top: 20px;
         width: 292px;
         height: 292px;
     }
@@ -11,6 +15,11 @@
     .touchpad-cell {
         width: 40px;
         height: 40px;
+    }
+    .grid-disable::after {
+        font-size: 36px;
+        margin-left: 10px;
+        line-height: 40px;
     }
     .tile .tile-inner,
     .tile {
@@ -20,10 +29,12 @@
     .game-info {
         width: 292px;
         height: 82px;
-        margin-top: 10px;
+        margin-top: 20px;
     }
     .next-title {
-        height: 18px;
+        height: 16px;
+        line-height: 16px;
+        margin-bottom: 2px;
     }
     .game-next {
         width: 96px;
@@ -39,17 +50,52 @@
     .game-state-inner {
         width: 292px;
         height: 30px;
+        line-height: 30px;
+    }
+    .game-score {
+        width: 292px;
+        height: 82px;
     }
     .current-score {
-        height: 32px;
-        width: 180px;
+        width: 80px;
+    }
+    .score-value {
+        font-size: 32px;
+        line-height: 32px;
+    }
+    .combo-value {
+        font-size: 16px;
+    }
+    .label-title {
+        font-size: 12px;
+    }
+    .combo-best {
+        left: 80px;
     }
     .best-score {
-        height: 16px;
-        width: 180px;
+        top: 30px;
+        width: 80px;
+        font-size: 14px;
     }
     .restart-button {
-        height: 34px;
-        width: 180px;
+        width: 110px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+    .game-about {
+        margin-top: 10px;
+    }
+    .game-level {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+    .game-progress {
+        top: 2px;
+        height: 26px;
+        width: 292px;
+    }
+    .game-progress-inner {
+        height: 26px;
     }
 }

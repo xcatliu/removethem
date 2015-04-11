@@ -17,15 +17,16 @@ HTMLActuator.prototype.updateData = function (metadata) {
     if (metadata.combo > 1) {
         console.info('Great! Combo ' + metadata.combo + '!');
     }
+    document.querySelector('.combo-value').innerHTML = metadata.combo + 'x';
     // score
     var scoreAdd = metadata.score - this.score;
     if (scoreAdd != 0 && !metadata.init) {
         console.info('You get ' + scoreAdd + '!');
     }
-    document.querySelector('.current-score').innerHTML = 'SCORE:' + metadata.score + ' COMBO:' + metadata.combo;
+    document.querySelector('.score-value').innerHTML = metadata.score;
     this.score = metadata.score;
     // bestScore
-    document.querySelector('.best-score').innerHTML = 'BEST SCORE:' + metadata.bestScore;
+    document.querySelector('.best-score').innerHTML = '<span class="label-title">BEST</span> ' + metadata.bestScore;
     // next
     var nextCells = document.querySelectorAll('.game-next .next-cell');
     Array.prototype.forEach.call(nextCells, function (ele) {
@@ -38,7 +39,8 @@ HTMLActuator.prototype.updateData = function (metadata) {
     });
     // level
     // line
-    document.querySelector('.game-state-inner').innerHTML = 'LEVEL:' + metadata.level + ' LINE:' + metadata.line + '/' + metadata.levelLine;
+    document.querySelector('.game-level').innerHTML = 'LEVEL ' + metadata.level;
+    document.querySelector('.game-progress-inner').setAttribute('style', 'width:' + metadata.line / metadata.levelLine * 100 + '%;');
     if (metadata.level != 1 && metadata.line == 0) {
         console.info('Congratulation！ Level up to lv' + metadata.level + '!');
     }
