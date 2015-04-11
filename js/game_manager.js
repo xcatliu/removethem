@@ -277,24 +277,27 @@ GameManager.prototype.checkTiles = function (tiles) {
         }];
         this.checkTilesPart(line1Array, 'xy+', tiles[i]);
         this.checkTilesPart(line1Array, 'xy-', tiles[i]);
+
         var line2Array = [{
             x: tiles[i].x,
             y: tiles[i].y
         }];
-        this.checkTilesPart(line1Array, 'x+y', tiles[i]);
-        this.checkTilesPart(line1Array, 'x-y', tiles[i]);
+        this.checkTilesPart(line2Array, 'x+y', tiles[i]);
+        this.checkTilesPart(line2Array, 'x-y', tiles[i]);
+
         var line3Array = [{
             x: tiles[i].x,
             y: tiles[i].y
         }];
-        this.checkTilesPart(line1Array, 'x+y+', tiles[i]);
-        this.checkTilesPart(line1Array, 'x-y-', tiles[i]);
+        this.checkTilesPart(line3Array, 'x+y+', tiles[i]);
+        this.checkTilesPart(line3Array, 'x-y-', tiles[i]);
+
         var line4Array = [{
             x: tiles[i].x,
             y: tiles[i].y
         }];
-        this.checkTilesPart(line1Array, 'x+y-', tiles[i]);
-        this.checkTilesPart(line1Array, 'x-y+', tiles[i]);
+        this.checkTilesPart(line4Array, 'x+y-', tiles[i]);
+        this.checkTilesPart(line4Array, 'x-y+', tiles[i]);
 
         // 大于等于4个的时候消除
         if (line1Array.length >= 4) {
