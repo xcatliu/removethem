@@ -1,14 +1,17 @@
+// 页面驱动类，构造VIEW
 function HTMLActuator() {
     this.score = 0;
-
     this.tileContainer = document.querySelector('.tile-container');
+    // TODO 将所有DOM对象缓存为变量
 }
 
+// 主函数，帧刷新
 HTMLActuator.prototype.actuate = function (grid, metadata) {
     this.refreshGrid(grid, metadata);
     this.updateData(metadata);
 };
 
+// 根据传递数据刷新数据界面
 HTMLActuator.prototype.updateData = function (metadata) {
     // combo
     if (metadata.combo > 1) {
@@ -45,7 +48,9 @@ HTMLActuator.prototype.updateData = function (metadata) {
     }
 };
 
+// 刷新棋盘
 HTMLActuator.prototype.refreshGrid = function (grid, metadata) {
+    // 处理逻辑和用户操作处理逻辑类似
     var self = this;
     window.requestAnimationFrame(function () {
         if (metadata.init) {
@@ -73,6 +78,7 @@ HTMLActuator.prototype.refreshGrid = function (grid, metadata) {
                         self.addTile(tile);
                     });
                     if (metadata.remove.length != 0) {
+                        // 为了展现先出现后消除的过程，延迟500毫秒
                         setTimeout(function () {
                             self.removeFormat(metadata.remove).forEach(function (tile) {
                                 self.removeTile(tile);
@@ -85,12 +91,14 @@ HTMLActuator.prototype.refreshGrid = function (grid, metadata) {
     });
 };
 
+// 清空棋盘
 HTMLActuator.prototype.clearContainer = function () {
     while (this.tileContainer.firstChild) {
         this.tileContainer.removeChild(this.tileContainer.firstChild);
     }
 };
 
+// 格式化要删除的方块，清除重复的
 HTMLActuator.prototype.removeFormat = function (remove) {
     var removeList = [];
     var removeListCheck = [];
@@ -105,6 +113,7 @@ HTMLActuator.prototype.removeFormat = function (remove) {
     return removeList;
 };
 
+// 删除某个方块
 HTMLActuator.prototype.removeTile = function (tile) {
     var position = {
         x: tile.x,
@@ -117,6 +126,7 @@ HTMLActuator.prototype.removeTile = function (tile) {
     }
 };
 
+// 激活某个方块
 HTMLActuator.prototype.activeTile = function (tile) {
     var tileNode = document.querySelector('.' + this.positionClass(tile));
     tileNode.classList.add('tile-active');
@@ -127,6 +137,7 @@ HTMLActuator.prototype.activeTile = function (tile) {
     });
 };
 
+// 取消激活状态
 HTMLActuator.prototype.clearActive = function () {
     var tileNode = document.querySelector('.tile-active');
     if (tileNode) {
@@ -138,6 +149,7 @@ HTMLActuator.prototype.clearActive = function () {
     });
 };
 
+// 添加方块，同时绑定CSS3动画回调
 HTMLActuator.prototype.addTile = function (tile) {
     var self = this;
 
@@ -164,10 +176,12 @@ HTMLActuator.prototype.addTile = function (tile) {
     });
 };
 
+// 应用class
 HTMLActuator.prototype.applyClasses = function (element, classes) {
     element.setAttribute('class', classes.join(' '));
 };
 
+// 获取位置class
 HTMLActuator.prototype.positionClass = function (position) {
     return 'tile-position-' + position.x + '-' + position.y;
 };

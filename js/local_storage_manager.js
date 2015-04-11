@@ -1,3 +1,4 @@
+// 虚拟一个假的storage，其实存在js缓存里
 window.fakeStorage = {
     _data: {},
 
@@ -18,6 +19,7 @@ window.fakeStorage = {
     }
 };
 
+// 存储管理类
 function LocalStorageManager() {
     this.bestScoreKey = 'bestScore';
     this.gameStateKey = 'gameState';
@@ -26,6 +28,7 @@ function LocalStorageManager() {
     this.storage = supported ? window.localStorage : window.fakeStorage;
 }
 
+// 判断是否支持HTML5的localStorage
 LocalStorageManager.prototype.localStorageSupported = function () {
     var testKey = 'test';
     var storage = window.localStorage;
